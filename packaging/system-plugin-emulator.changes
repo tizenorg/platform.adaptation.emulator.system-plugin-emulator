@@ -1,6 +1,9 @@
 * Fri Nov  1 06:19:37 UTC 2013 GiWoong Kim <giwoong.kim@samsung.com>
 - modified model-config.sh
 
+* Fri Oct 11 13:14:14 UTC 2013 Kitae Kim <kt920.kim@samsung.com>
+- remove sdbd.service since sdbd package has included the service file.
+
 * Fri Oct 11 10:18:17 UTC 2013 GiWoong Kim <giwoong.kim@samsung.com>
 - Merge rc.shutdown 'system-plugin-slp' into emulator
 
