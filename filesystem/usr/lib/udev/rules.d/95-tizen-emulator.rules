@@ -1,5 +1,6 @@
 KERNEL=="glmem",        MODE="0666", SMACK="*"
 KERNEL=="yagl",         MODE="0666", SMACK="*"
+KERNEL=="esm",          MODE="0666", SMACK="*"
 
 KERNEL=="codec",        GROUP="hwcodec", MODE="0666", SMACK="device::hwcodec"
 KERNEL=="brillcodec",   GROUP="hwcodec", MODE="0666", SMACK="device::hwcodec"
