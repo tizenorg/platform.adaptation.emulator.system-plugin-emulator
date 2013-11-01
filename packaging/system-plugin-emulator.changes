@@ -1,3 +1,6 @@
+* Fri Nov  1 06:19:37 UTC 2013 GiWoong Kim <giwoong.kim@samsung.com>
+- modified model-config.sh
+
 * Fri Oct 11 10:18:17 UTC 2013 GiWoong Kim <giwoong.kim@samsung.com>
 - Merge rc.shutdown 'system-plugin-slp' into emulator
 

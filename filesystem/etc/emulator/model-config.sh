@@ -11,7 +11,7 @@ if grep --silent "video=" $CMDLINE ; then
         echo -e "[${_G} modify the resolution value of platform features: ${C_}]"
 
         VIDEO=`sed s/.*video=// $CMDLINE | cut -d ' ' -f1`
-        FORMAT=`echo $VIDEO | cut -d ',' -f2`
+        FORMAT=`echo $VIDEO | cut -d ':' -f2 | cut -d ',' -f2`
         RESOLUTION=`echo $FORMAT | cut -d '-' -f1`
         WIDTH=`echo $RESOLUTION | cut -d 'x' -f1`
         HEIGHT=`echo $RESOLUTION | cut -d 'x' -f2`
@@ -28,21 +28,33 @@ if grep --silent "video=" $CMDLINE ; then
 
             # screen size
             SCREENSIZE_KEY="tizen.org\/feature\/screen.size.normal."
+            SCREENSIZE_KEY_WQVGA=""$SCREENSIZE_KEY"240.400\" type=\"bool\""
+            SCREENSIZE_KEY_HVGA=""$SCREENSIZE_KEY"320.480\" type=\"bool\""
             SCREENSIZE_KEY_WVGA=""$SCREENSIZE_KEY"480.800\" type=\"bool\""
+            SCREENSIZE_KEY_WSVGA=""$SCREENSIZE_KEY"600.1024\" type=\"bool\""
             SCREENSIZE_KEY_HD=""$SCREENSIZE_KEY"720.1280\" type=\"bool\""
+            SCREENSIZE_KEY_FHD=""$SCREENSIZE_KEY"1080.1920\" type=\"bool\""
 
             if [ $WIDTH -eq 480 ] && [ $HEIGHT -eq 800 ] ; then
                 # WVGA
                 sed -i s/"$SCREENSIZE_KEY_WVGA".*\</"$SCREENSIZE_KEY_WVGA"\>true\</ $XML
                 sed -i s/"$SCREENSIZE_KEY_HD".*\</"$SCREENSIZE_KEY_HD"\>false\</ $XML
+                sed -i s/"$SCREENSIZE_KEY_FHD".*\</"$SCREENSIZE_KEY_FHD"\>false\</ $XML
             elif [ $WIDTH -eq 720 ] && [ $HEIGHT -eq 1280 ] ; then
                 # HD
                 sed -i s/"$SCREENSIZE_KEY_WVGA".*\</"$SCREENSIZE_KEY_WVGA"\>false\</ $XML
                 sed -i s/"$SCREENSIZE_KEY_HD".*\</"$SCREENSIZE_KEY_HD"\>true\</ $XML
+                sed -i s/"$SCREENSIZE_KEY_FHD".*\</"$SCREENSIZE_KEY_FHD"\>false\</ $XML
+            elif [ $WIDTH -eq 1080 ] && [ $HEIGHT -eq 1920 ] ; then
+                # FHD
+                sed -i s/"$SCREENSIZE_KEY_WVGA".*\</"$SCREENSIZE_KEY_WVGA"\>false\</ $XML
+                sed -i s/"$SCREENSIZE_KEY_HD".*\</"$SCREENSIZE_KEY_HD"\>false\</ $XML
+                sed -i s/"$SCREENSIZE_KEY_FHD".*\</"$SCREENSIZE_KEY_FHD"\>true\</ $XML
             else
                 # etc
                 sed -i s/"$SCREENSIZE_KEY_WVGA".*\</"$SCREENSIZE_KEY_WVGA"\>false\</ $XML
                 sed -i s/"$SCREENSIZE_KEY_HD".*\</"$SCREENSIZE_KEY_HD"\>false\</ $XML
+                sed -i s/"$SCREENSIZE_KEY_FHD".*\</"$SCREENSIZE_KEY_FHD"\>false\</ $XML
             fi
         fi
 fi
