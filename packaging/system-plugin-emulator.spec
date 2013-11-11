@@ -6,7 +6,7 @@ Release: 1
 
 Summary: System plugin for emulator
 License: Apache-2.0
-Group: System/Base
+Group: System/Configuration
 Requires: udev
 Requires: util-linux
 Requires: sysvinit
