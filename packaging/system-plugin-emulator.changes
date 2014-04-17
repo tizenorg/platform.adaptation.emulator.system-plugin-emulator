@@ -1,3 +1,6 @@
+* Thu Apr 17 18:03:11 KST 2014 Sooyoung Ha <yoosah.ha@samsung.com>
+- remove rc.sysinit script and modivy udev rule.
+
 * Fri Nov  1 06:19:37 UTC 2013 GiWoong Kim <giwoong.kim@samsung.com>
 - modified model-config.sh
 
