@@ -43,6 +43,7 @@ mkdir -p %{buildroot}/%{systemd_dir}/system/emulator_preinit.target.wants
 ln -s %{systemd_dir}/system/emul-setup-audio-volume.service %{buildroot}/%{systemd_dir}/system/emulator_preinit.target.wants/
 ln -s %{systemd_dir}/system/emul-mount-hostdir.service %{buildroot}/%{systemd_dir}/system/emulator_preinit.target.wants/
 ln -s %{systemd_dir}/system/emul-common-preinit.service %{buildroot}/%{systemd_dir}/system/emulator_preinit.target.wants/
+ln -s %{systemd_dir}/system/dev-vdb.swap %{buildroot}/%{systemd_dir}/system/emulator_preinit.target.wants/
 # for emulator.target
 mkdir -p %{buildroot}/%{systemd_dir}/system/multi-user.target.wants
 ln -s %{systemd_dir}/system/emulator.target %{buildroot}/%{systemd_dir}/system/multi-user.target.wants/
@@ -54,14 +55,6 @@ mkdir -p %{buildroot}/mnt/host
 # include license
 mkdir -p %{buildroot}/usr/share/license
 cp LICENSE %{buildroot}/usr/share/license/%{name}
-
-%post
-#make fstab
-if [ -e /etc/fstab ]; then
-	echo "/opt/var   /var      bind    bind             0 0" >> /etc/fstab
-	echo "/tmpfs     /tmp      tmpfs   defaults         0 0" >> /etc/fstab
-	echo "/dev/vdb   swap      swap    defaults         0 0" >> /etc/fstab
-fi
 
 %files
 /etc/emulator/setup-audio-volume.sh
@@ -86,9 +79,11 @@ fi
 /usr/lib/systemd/system/emul-setup-audio-volume.service
 /usr/lib/systemd/system/emul-mount-hostdir.service
 /usr/lib/systemd/system/emul-common-preinit.service
+/usr/lib/systemd/system/dev-vdb.swap
 /usr/lib/systemd/system/emulator_preinit.target.wants/emul-setup-audio-volume.service
 /usr/lib/systemd/system/emulator_preinit.target.wants/emul-mount-hostdir.service
 /usr/lib/systemd/system/emulator_preinit.target.wants/emul-common-preinit.service
+/usr/lib/systemd/system/emulator_preinit.target.wants/dev-vdb.swap
 /usr/lib/udev/rules.d/95-tizen-emulator.rules
 %dir /mnt/host
 /usr/share/license/%{name}
