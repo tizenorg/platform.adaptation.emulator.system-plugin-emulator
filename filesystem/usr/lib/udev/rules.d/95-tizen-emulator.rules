@@ -11,3 +11,4 @@ KERNEL=="video2",       GROUP="video", MODE="0660", SMACK="device::video"
 
 KERNEL=="vdpram*",      MODE="0644"
 
+SUBSYSTEM=="input", ATTR{name}=="ImExPS/2 Generic Explorer Mouse", ENV{ID_SEAT}="seat1"
