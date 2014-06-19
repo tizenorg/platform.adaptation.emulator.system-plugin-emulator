@@ -1,5 +1,5 @@
 Name: system-plugin-emulator
-Version: 0.1.1
+Version: 0.1.2
 Release: 1
 
 %define systemd_dir     /usr/lib/systemd
@@ -49,8 +49,7 @@ ln -s %{systemd_dir}/system/emulator.target %{buildroot}/%{systemd_dir}/system/m
 mkdir -p %{buildroot}/%{systemd_dir}/system/emulator.target.wants
 
 # services from system-plugin-exynos
-rm %{buildroot}/%{systemd_dir}/system/tizen-generate-env.service
-
+ln -s ../tizen-generate-env.service %{buildroot}/%{systemd_dir}/system/basic.target.wants/
 mkdir -p %{buildroot}/%{systemd_dir}/system/default.target.wants
 ln -s ../tizen-readahead-collect.service %{buildroot}/%{systemd_dir}/system/default.target.wants/
 ln -s ../tizen-readahead-replay.service %{buildroot}/%{systemd_dir}/system/default.target.wants/
@@ -94,6 +93,7 @@ fi
 /usr/lib/systemd/system/emulator_preinit.target
 /usr/lib/systemd/system/emulator.target
 /usr/lib/systemd/system/basic.target.wants/emulator_preinit.target
+/usr/lib/systemd/system/basic.target.wants/tizen-generate-env.service
 /usr/lib/systemd/system/default.target.wants/tizen-readahead-collect.service
 /usr/lib/systemd/system/default.target.wants/tizen-readahead-replay.service
 /usr/lib/systemd/system/multi-user.target.wants/emulator.target
@@ -107,6 +107,7 @@ fi
 /usr/lib/systemd/system/tizen-readahead-collect.service
 /usr/lib/systemd/system/tizen-readahead-replay.service
 /usr/lib/systemd/system/wm_ready.service
+/usr/lib/systemd/system/tizen-generate-env.service
 /usr/lib/udev/rules.d/95-tizen-emulator.rules
 %dir /mnt/host
 /usr/share/license/%{name}
