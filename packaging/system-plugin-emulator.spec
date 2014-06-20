@@ -1,5 +1,5 @@
 Name: system-plugin-emulator
-Version: 0.1.2
+Version: 0.1.3
 Release: 1
 
 %define systemd_dir     /usr/lib/systemd
@@ -14,6 +14,7 @@ Requires(post): setup
 Requires(post): coreutils
 Source0: %{name}-%{version}.tar.gz
 Source1001: packaging/%{name}.manifest
+ExclusiveArch: %{ix86}
 
 %description
 System plugin files for emulator
@@ -47,8 +48,10 @@ ln -s %{systemd_dir}/system/dev-vdb.swap %{buildroot}/%{systemd_dir}/system/emul
 # for emulator.target
 mkdir -p %{buildroot}/%{systemd_dir}/system/multi-user.target.wants
 ln -s %{systemd_dir}/system/emulator.target %{buildroot}/%{systemd_dir}/system/multi-user.target.wants/
+ln -s %{systemd_dir}/system/tizen-boot.target %{buildroot}/%{systemd_dir}/system/multi-user.target.wants/
+ln -s %{systemd_dir}/system/tizen-system.target %{buildroot}/%{systemd_dir}/system/multi-user.target.wants/
+ln -s %{systemd_dir}/system/tizen-runtime.target %{buildroot}/%{systemd_dir}/system/multi-user.target.wants/
 mkdir -p %{buildroot}/%{systemd_dir}/system/emulator.target.wants
-
 # services from system-plugin-exynos
 ln -s ../tizen-generate-env.service %{buildroot}/%{systemd_dir}/system/basic.target.wants/
 mkdir -p %{buildroot}/%{systemd_dir}/system/default.target.wants
@@ -89,6 +92,9 @@ cp LICENSE %{buildroot}/usr/share/license/%{name}
 /usr/lib/systemd/system/default.target.wants/tizen-readahead-collect.service
 /usr/lib/systemd/system/default.target.wants/tizen-readahead-replay.service
 /usr/lib/systemd/system/multi-user.target.wants/emulator.target
+/usr/lib/systemd/system/multi-user.target.wants/tizen-boot.target
+/usr/lib/systemd/system/multi-user.target.wants/tizen-system.target
+/usr/lib/systemd/system/multi-user.target.wants/tizen-runtime.target
 /usr/lib/systemd/system/emul-setup-audio-volume.service
 /usr/lib/systemd/system/emul-mount-hostdir.service
 /usr/lib/systemd/system/emul-common-preinit.service
@@ -97,6 +103,9 @@ cp LICENSE %{buildroot}/usr/share/license/%{name}
 /usr/lib/systemd/system/emulator_preinit.target.wants/emul-mount-hostdir.service
 /usr/lib/systemd/system/emulator_preinit.target.wants/emul-common-preinit.service
 /usr/lib/systemd/system/emulator_preinit.target.wants/dev-vdb.swap
+/usr/lib/systemd/system/tizen-boot.target
+/usr/lib/systemd/system/tizen-system.target
+/usr/lib/systemd/system/tizen-runtime.target
 /usr/lib/systemd/system/tizen-boot.target.wants/wm_ready.service
 /usr/lib/systemd/system/tizen-readahead-collect.service
 /usr/lib/systemd/system/tizen-readahead-replay.service
