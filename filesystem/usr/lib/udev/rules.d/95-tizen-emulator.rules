@@ -12,3 +12,5 @@ KERNEL=="vdpram*",      MODE="0644"
 
 # Moved from /etc/rc.d/rc3.d/S30brightness
 SUBSYSTEM=="lcd", ATTR{lcd_power}=="?*", RUN+="/bin/chown :system_bklight 0664 %S/%p/lcd_power"
+
+SUBSYSTEM=="drm", SECLABEL{smack}="*"
