@@ -68,6 +68,10 @@ mkdir -p %{buildroot}/mnt/host
 mkdir -p %{buildroot}/usr/share/license
 cp LICENSE %{buildroot}/usr/share/license/%{name}
 
+%posttrans
+#run emulator_ns.preinit script after all packages have been installed.
+/etc/preconf.d/emulator_ns.preinit
+
 %files
 /etc/emulator/setup-audio-volume.sh
 /etc/emulator/mount-hostdir.sh
