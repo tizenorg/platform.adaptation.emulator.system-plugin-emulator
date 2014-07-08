@@ -75,6 +75,10 @@ if [ -e /etc/fstab ]; then
 	echo "/dev/vdb   swap      swap    defaults         0 0" >> /etc/fstab
 fi
 
+%posttrans
+#run emulator_ns.preinit script after all packages have been installed.
+/etc/preconf.d/emulator_ns.preinit
+
 %files
 /etc/emulator/setup-audio-volume.sh
 /etc/emulator/mount-hostdir.sh
