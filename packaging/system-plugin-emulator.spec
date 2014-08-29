@@ -33,7 +33,6 @@ cp -arf filesystem/* %{buildroot}
 if [ ! -d %{buildroot}/etc/rc.d/rc3.d ]; then
     mkdir -p %{buildroot}/etc/rc.d/rc3.d
 fi
-ln -s /etc/init.d/setup-audio-volume %{buildroot}//etc/rc.d/rc3.d/S02setup-audio-volume
 ln -s /etc/init.d/mount-hostdir %{buildroot}//etc/rc.d/rc3.d/S03mount-hostdir
 
 # for systemd
@@ -73,11 +72,9 @@ cp LICENSE %{buildroot}/usr/share/license/%{name}
 /etc/preconf.d/emulator_ns.preinit
 
 %files
-/etc/emulator/setup-audio-volume.sh
 /etc/emulator/mount-hostdir.sh
 /etc/emulator/prerun
 /etc/emulator/prerun.d/model-config.sh
-/etc/init.d/setup-audio-volume
 /etc/init.d/mount-hostdir
 /etc/inittab
 /etc/preconf.d/emulator_ns.preinit
@@ -87,7 +84,6 @@ cp LICENSE %{buildroot}/usr/share/license/%{name}
 /etc/rc.d/rc.firstboot
 /etc/rc.d/rc.shutdown
 /etc/rc.d/rc.sysinit
-/etc/rc.d/rc3.d/S02setup-audio-volume
 /etc/rc.d/rc3.d/S03mount-hostdir
 /usr/lib/systemd/system/emulator_preinit.target
 /usr/lib/systemd/system/emulator.target
