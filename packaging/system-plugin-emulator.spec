@@ -32,7 +32,6 @@ cp -arf filesystem/* %{buildroot}
 if [ ! -d %{buildroot}/etc/rc.d/rc3.d ]; then
     mkdir -p %{buildroot}/etc/rc.d/rc3.d
 fi
-ln -s /etc/init.d/setup-audio-volume %{buildroot}//etc/rc.d/rc3.d/S02setup-audio-volume
 ln -s /etc/init.d/mount-hostdir %{buildroot}//etc/rc.d/rc3.d/S03mount-hostdir
 ln -s /etc/init.d/ssh %{buildroot}/etc/rc.d/rc3.d/S50ssh
 
@@ -80,10 +79,8 @@ fi
 /etc/preconf.d/emulator_ns.preinit
 
 %files
-/etc/emulator/setup-audio-volume.sh
 /etc/emulator/mount-hostdir.sh
 /etc/emulator/model-config.sh
-/etc/init.d/setup-audio-volume
 /etc/init.d/mount-hostdir
 /etc/inittab
 /etc/preconf.d/emulator_ns.preinit
@@ -93,7 +90,6 @@ fi
 /etc/rc.d/rc.firstboot
 /etc/rc.d/rc.shutdown
 /etc/rc.d/rc.sysinit
-/etc/rc.d/rc3.d/S02setup-audio-volume
 /etc/rc.d/rc3.d/S03mount-hostdir
 /etc/rc.d/rc3.d/S50ssh
 /etc/systemd/default-extra-dependencies/ignore-units
