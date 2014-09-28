@@ -12,10 +12,10 @@ __proxy=`cmd_get https_proxy`
 [ -n "${__proxy}" ] && export "https_proxy=https://${__proxy}/"
 
 __proxy=`cmd_get ftp_proxy`
-[ -n "${__proxy}" ] && "ftp_proxy=ftp://${__proxy}/"
+[ -n "${__proxy}" ] && export "ftp_proxy=ftp://${__proxy}/"
 
 __proxy=`cmd_get socks_proxy`
-[ -n "${__proxy}" ] && "socks_proxy=socks://${__proxy}/"
+[ -n "${__proxy}" ] && export "socks_proxy=socks://${__proxy}/"
 
 no_proxy="localhost,127.0.0.1/8,10.0.0.0/16"
 
