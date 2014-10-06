@@ -1,5 +1,5 @@
 Name: system-plugin-emulator
-Version: 0.1.4
+Version: 0.1.5
 Release: 1
 
 %define systemd_dir     /usr/lib/systemd
@@ -117,6 +117,7 @@ fi
 /usr/lib/systemd/system/tizen-readahead-replay.service
 /usr/lib/systemd/system/wm_ready.service
 /usr/lib/systemd/system/tizen-generate-env.service
+/usr/lib/udev/rules.d/51-tizen-udev-default.rules
 /usr/lib/udev/rules.d/95-tizen-emulator.rules
 %dir /mnt/host
 /usr/share/license/%{name}
