@@ -1,13 +1,25 @@
-#!/bin/sh
+if [ ! -z $1 ]; then
+        NEW_ROOT=$1
+        # if NEW_ROOT is passed, it executed by initramfs.
+        # So, we should prepare some core utils.
+        /bin/busybox ln -sf /bin/busybox /bin/ln
+        ln -sf /bin/busybox /bin/sed
+        ln -sf /bin/busybox /bin/grep
+        ln -sf /bin/busybox /bin/cut
+        ln -sf /bin/busybox /bin/tr
+        ln -sf /bin/busybox /bin/expr
+        ln -sf /bin/busybox /bin/readlink
+else
+        NEW_ROOT=
+fi
 
 CMDLINE=/proc/cmdline
-XML=/etc/config/model-config.xml
-
+XML=$(readlink -f $NEW_ROOT/etc/config/model-config.xml)
 
 echo -e "[${_G} model config setting ${C_}]"
 
 # display resolution
-if grep --silent "video=" $CMDLINE ; then
+if grep -q "video=" $CMDLINE ; then
         echo -e "[${_G} modify the resolution value of platform features: ${C_}]"
 
         VIDEO=`sed s/.*video=// $CMDLINE | cut -d ' ' -f1`
@@ -38,7 +50,7 @@ if grep --silent "video=" $CMDLINE ; then
 fi
 
 # dot per inch
-if grep --silent "dpi=" $CMDLINE ; then
+if grep -q "dpi=" $CMDLINE ; then
         echo -e "[${_G} modify the dpi value of platform features: ${C_}]"
 
         DPI=`sed s/.*dpi=// $CMDLINE | cut -d ' ' -f1`
