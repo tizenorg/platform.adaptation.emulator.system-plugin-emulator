@@ -1,5 +1,5 @@
 Name: system-plugin-emulator
-Version: 0.1.5
+Version: 0.1.6
 Release: 1
 
 %define systemd_dir     /usr/lib/systemd
@@ -69,9 +69,6 @@ cp LICENSE %{buildroot}/usr/share/license/%{name}
 %post
 #make fstab
 if [ -e /etc/fstab ]; then
-%if "%{?tizen_profile_name}" == "mobile"
-	echo "/opt/var   /var      bind    bind             0 0" >> /etc/fstab
-%endif
 	echo "tmpfs      /tmp      tmpfs   comment=havefs-smackfs-smackfsroot=* 0 0" >> /etc/fstab
 	echo "/dev/vdb   swap      swap    defaults         0 0" >> /etc/fstab
 fi
