@@ -8,7 +8,7 @@ KERNEL=="video0",       GROUP="camera", MODE="0660", SECLABEL{smack}="device::ca
 KERNEL=="video1",       GROUP="video", MODE="0660", SECLABEL{smack}="device::video"
 KERNEL=="video2",       GROUP="video", MODE="0660", SECLABEL{smack}="device::video"
 
-KERNEL=="vdpram*",      GROUP="system", MODE="0644", SECLABEL{smack}="*"
+KERNEL=="vdpram*",      GROUP="system", MODE="0660", SECLABEL{smack}="*"
 
 # Moved from /etc/rc.d/rc3.d/S30brightness
 SUBSYSTEM=="lcd", ATTR{lcd_power}=="?*", RUN+="/bin/chown :system_bklight 0664 %S/%p/lcd_power"
