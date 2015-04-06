@@ -9,7 +9,7 @@ KERNEL=="video0",       GROUP="camera", MODE="0660", SECLABEL{smack}="device::ca
 KERNEL=="video1",       GROUP="video", MODE="0660", SECLABEL{smack}="device::video"
 KERNEL=="video2",       GROUP="video", MODE="0660", SECLABEL{smack}="device::video"
 
-KERNEL=="vdpram*",      GROUP="system", MODE="0644", SECLABEL{smack}="*"
+KERNEL=="vdpram*",      GROUP="system", MODE="0660", SECLABEL{smack}="*"
 
 SUBSYSTEM=="input", ATTR{name}=="ImExPS/2 Generic Explorer Mouse", ENV{ID_SEAT}="seat1"
 SUBSYSTEM=="drm", SECLABEL{smack}="*"
