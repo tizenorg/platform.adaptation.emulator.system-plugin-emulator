@@ -28,20 +28,12 @@ System plugin files for emulator
 find . -name .gitignore -exec rm -f {} \;
 cp -arf filesystem/* %{buildroot}
 
-# for legacy init
-if [ ! -d %{buildroot}/etc/rc.d/rc3.d ]; then
-    mkdir -p %{buildroot}/etc/rc.d/rc3.d
-fi
-ln -s /etc/init.d/mount-hostdir %{buildroot}//etc/rc.d/rc3.d/S03mount-hostdir
-ln -s /etc/init.d/ssh %{buildroot}/etc/rc.d/rc3.d/S50ssh
-
 # for systemd
 # for emulator_preinit.target
 mkdir -p %{buildroot}/%{systemd_dir}/system/basic.target.wants
 ln -s %{systemd_dir}/system/emulator_preinit.target %{buildroot}/%{systemd_dir}/system/basic.target.wants/
 mkdir -p %{buildroot}/%{systemd_dir}/system/emulator_preinit.target.wants
 ln -s %{systemd_dir}/system/emul-setup-audio-volume.service %{buildroot}/%{systemd_dir}/system/emulator_preinit.target.wants/
-ln -s %{systemd_dir}/system/emul-mount-hostdir.service %{buildroot}/%{systemd_dir}/system/emulator_preinit.target.wants/
 ln -s %{systemd_dir}/system/emul-common-preinit.service %{buildroot}/%{systemd_dir}/system/emulator_preinit.target.wants/
 # for emulator.target
 mkdir -p %{buildroot}/%{systemd_dir}/system/multi-user.target.wants
@@ -59,9 +51,6 @@ mkdir -p %{buildroot}/%{systemd_dir}/system/tizen-boot.target.wants
 ln -s ../wm_ready.service %{buildroot}/%{systemd_dir}/system/tizen-boot.target.wants/
 mkdir -p %{buildroot}/%{systemd_dir}/system/tizen-system.target.wants
 
-# for host file sharing
-mkdir -p %{buildroot}/mnt/host
-
 # include license
 mkdir -p %{buildroot}/usr/share/license
 cp LICENSE %{buildroot}/usr/share/license/%{name}
@@ -78,10 +67,8 @@ fi
 /etc/preconf.d/emulator_ns.preinit
 
 %files
-/etc/emulator/mount-hostdir.sh
 /etc/emulator/model-config.sh
 /etc/emulator/select-boot-animation.sh
-/etc/init.d/mount-hostdir
 /etc/inittab
 /etc/preconf.d/emulator_ns.preinit
 /etc/preconf.d/systemd_conf.preinit
@@ -90,8 +77,6 @@ fi
 /etc/rc.d/rc.firstboot
 /etc/rc.d/rc.shutdown
 /etc/rc.d/rc.sysinit
-/etc/rc.d/rc3.d/S03mount-hostdir
-/etc/rc.d/rc3.d/S50ssh
 /etc/systemd/default-extra-dependencies/ignore-units
 /usr/lib/systemd/system/emulator_preinit.target
 /usr/lib/systemd/system/emulator.target
@@ -104,10 +89,8 @@ fi
 /usr/lib/systemd/system/multi-user.target.wants/tizen-system.target
 /usr/lib/systemd/system/multi-user.target.wants/tizen-runtime.target
 /usr/lib/systemd/system/emul-setup-audio-volume.service
-/usr/lib/systemd/system/emul-mount-hostdir.service
 /usr/lib/systemd/system/emul-common-preinit.service
 /usr/lib/systemd/system/emulator_preinit.target.wants/emul-setup-audio-volume.service
-/usr/lib/systemd/system/emulator_preinit.target.wants/emul-mount-hostdir.service
 /usr/lib/systemd/system/emulator_preinit.target.wants/emul-common-preinit.service
 /usr/lib/systemd/system/tizen-boot.target
 /usr/lib/systemd/system/tizen-system.target
@@ -119,5 +102,4 @@ fi
 /usr/lib/systemd/system/tizen-generate-env.service
 /usr/lib/udev/rules.d/51-tizen-udev-default.rules
 /usr/lib/udev/rules.d/95-tizen-emulator.rules
-%dir /mnt/host
 /usr/share/license/%{name}
