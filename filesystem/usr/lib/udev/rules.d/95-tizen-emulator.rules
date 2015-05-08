@@ -14,5 +14,3 @@ KERNEL=="vdpram*",      GROUP="system", MODE="0660", SECLABEL{smack}="*"
 SUBSYSTEM=="lcd", ATTR{lcd_power}=="?*", RUN+="/bin/chown :system_bklight 0664 %S/%p/lcd_power"
 
 SUBSYSTEM=="drm", SECLABEL{smack}="*"
-SUBSYSTEM=="input", KERNEL=="mouse*|mice|event*", GROUP="input", SECLABEL{smack}="device::input"
-
