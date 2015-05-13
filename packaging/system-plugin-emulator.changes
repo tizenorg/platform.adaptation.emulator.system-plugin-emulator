@@ -1,8 +1,8 @@
-* Thu Jun 05 11:15:24 CEST 2014 Rafal Krypa <r.krypa@samsung.com>
-- remove sdbd.service since sdbd package has included the service file.
+* Tue Nov 26 11:41:26 KST 2013 Sooyoung Ha <yoosah.ha@samsung.com>
+- modify fstab on spec file.
 
-* Thu Apr 17 18:03:11 KST 2014 Sooyoung Ha <yoosah.ha@samsung.com>
-- remove rc.sysinit script and modify udev rule.
+* Mon Nov 25 17:08:11 UTC 2013 Sooyoung Ha <yoosah.ha@samsung.com>
+- add some service files from system-plugin-exynos git repository.
 
 * Fri Nov  1 06:19:37 UTC 2013 GiWoong Kim <giwoong.kim@samsung.com>
 - modified model-config.sh
