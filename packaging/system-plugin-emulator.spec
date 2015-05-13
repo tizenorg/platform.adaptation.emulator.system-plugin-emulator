@@ -59,7 +59,8 @@ cp LICENSE %{buildroot}/usr/share/license/%{name}
 %files
 /etc/emulator/setup-audio-volume.sh
 /etc/emulator/mount-hostdir.sh
-/etc/emulator/model-config.sh
+/etc/emulator/prerun
+/etc/emulator/prerun.d/model-config.sh
 /etc/init.d/setup-audio-volume
 /etc/init.d/mount-hostdir
 /etc/inittab
