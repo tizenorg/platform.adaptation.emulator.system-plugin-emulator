@@ -49,6 +49,16 @@ mkdir -p %{buildroot}/%{systemd_dir}/system/multi-user.target.wants
 ln -s %{systemd_dir}/system/emulator.target %{buildroot}/%{systemd_dir}/system/multi-user.target.wants/
 mkdir -p %{buildroot}/%{systemd_dir}/system/emulator.target.wants
 
+# services from system-plugin-exynos
+rm %{buildroot}/%{systemd_dir}/system/tizen-generate-env.service
+
+mkdir -p %{buildroot}/%{systemd_dir}/system/default.target.wants
+ln -s ../tizen-readahead-collect.service %{buildroot}/%{systemd_dir}/system/default.target.wants/
+ln -s ../tizen-readahead-replay.service %{buildroot}/%{systemd_dir}/system/default.target.wants/
+mkdir -p %{buildroot}/%{systemd_dir}/system/tizen-boot.target.wants
+ln -s ../wm_ready.service %{buildroot}/%{systemd_dir}/system/tizen-boot.target.wants/
+mkdir -p %{buildroot}/%{systemd_dir}/system/tizen-system.target.wants
+
 # for host file sharing
 mkdir -p %{buildroot}/mnt/host
 
@@ -76,6 +86,8 @@ cp LICENSE %{buildroot}/usr/share/license/%{name}
 /usr/lib/systemd/system/emulator_preinit.target
 /usr/lib/systemd/system/emulator.target
 /usr/lib/systemd/system/basic.target.wants/emulator_preinit.target
+/usr/lib/systemd/system/default.target.wants/tizen-readahead-collect.service
+/usr/lib/systemd/system/default.target.wants/tizen-readahead-replay.service
 /usr/lib/systemd/system/multi-user.target.wants/emulator.target
 /usr/lib/systemd/system/emul-setup-audio-volume.service
 /usr/lib/systemd/system/emul-mount-hostdir.service
@@ -85,6 +97,10 @@ cp LICENSE %{buildroot}/usr/share/license/%{name}
 /usr/lib/systemd/system/emulator_preinit.target.wants/emul-mount-hostdir.service
 /usr/lib/systemd/system/emulator_preinit.target.wants/emul-common-preinit.service
 /usr/lib/systemd/system/emulator_preinit.target.wants/dev-vdb.swap
+/usr/lib/systemd/system/tizen-boot.target.wants/wm_ready.service
+/usr/lib/systemd/system/tizen-readahead-collect.service
+/usr/lib/systemd/system/tizen-readahead-replay.service
+/usr/lib/systemd/system/wm_ready.service
 /usr/lib/udev/rules.d/95-tizen-emulator.rules
 %dir /mnt/host
 /usr/share/license/%{name}
