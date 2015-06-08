@@ -31,7 +31,7 @@ cp -arf filesystem/* %{buildroot}
 %install_service basic.target.wants emulator_preinit.target
 %install_service emulator_preinit.target.wants emul-setup-audio-volume.service
 %install_service emulator_preinit.target.wants emul-common-preinit.service
-%install_service emulator_preinit.target.wants dev-vdb.swap
+%install_service emulator_preinit.target.wants dev-disk-by\\x2dlabel-emulator\\x2dswap.swap
 %install_service multi-user.target.wants emulator.target
 %install_service basic.target.wants tizen-generate-env.service
 
@@ -61,10 +61,10 @@ cp LICENSE %{buildroot}/usr/share/license/%{name}
 %{_unitdir}/multi-user.target.wants/emulator.target
 %{_unitdir}/emul-setup-audio-volume.service
 %{_unitdir}/emul-common-preinit.service
-%{_unitdir}/dev-vdb.swap
+%{_unitdir}/dev-disk-by\x2dlabel-emulator\x2dswap.swap
 %{_unitdir}/emulator_preinit.target.wants/emul-setup-audio-volume.service
 %{_unitdir}/emulator_preinit.target.wants/emul-common-preinit.service
-%{_unitdir}/emulator_preinit.target.wants/dev-vdb.swap
+%{_unitdir}/emulator_preinit.target.wants/dev-disk-by\x2dlabel-emulator\x2dswap.swap
 %{_unitdir}/tizen-generate-env.service
 %{_prefix}/lib/udev/rules.d/51-tizen-udev-default.rules
 %{_prefix}/lib/udev/rules.d/95-tizen-emulator.rules
