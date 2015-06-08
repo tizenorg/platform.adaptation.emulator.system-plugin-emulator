@@ -2,7 +2,7 @@
 Description=Swap on emulator
 
 [Swap]
-What=/dev/vdb
+What=/dev/disk/by-label/emulator-swap
 
 [Install]
 WantedBy=emulator_preinit.target
