@@ -46,10 +46,10 @@ cp LICENSE %{buildroot}/usr/share/license/%{name}
 %files
 /etc/emulator/prerun
 /etc/emulator/prerun.d/model-config.sh
+/etc/emulator/prerun.d/generate-emulator-env.sh
 /etc/inittab
 /etc/preconf.d/emulator_ns.preinit
 /etc/preconf.d/systemd_conf.preinit
-/etc/profile.d/proxy_setting.sh
 /etc/rc.d/rc.emul
 /etc/rc.d/rc.firstboot
 /etc/rc.d/rc.shutdown

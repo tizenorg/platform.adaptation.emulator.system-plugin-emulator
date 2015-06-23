@@ -11,6 +11,7 @@ if [ ! -z $1 ]; then
         ln -sf /bin/busybox /bin/tr
         ln -sf /bin/busybox /bin/expr
         ln -sf /bin/busybox /bin/readlink
+        ln -sf /bin/busybox /bin/rm
 else
         NEW_ROOT=
 fi
