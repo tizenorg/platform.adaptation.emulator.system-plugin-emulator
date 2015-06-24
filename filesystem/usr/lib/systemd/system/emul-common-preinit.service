@@ -9,8 +9,9 @@ Type=oneshot
 
 # execute prerun scripts.
 # it is not necessary because it is already executed from initramfs.
-# but we execute it again for sure.
-ExecStartPre=/bin/sh -c '. /etc/emulator/prerun'
+# commented out for debugging.
+#ExecStartPre=/bin/sh -c '. /etc/emulator/prerun'
+
 # W/A for alarm-service
 ExecStart=/bin/touch /dev/rtc1
 ExecStartPost=/usr/bin/chsmack -a "_" /etc/config/model-config.xml
