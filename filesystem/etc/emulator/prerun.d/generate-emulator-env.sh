@@ -8,7 +8,7 @@ CMDLINE=/proc/cmdline
 EMULATOR_ENV=$(readlink -f $NEW_ROOT/etc/profile.d/emulator_env.sh)
 
 ##### network proxy environments
-echo -e "[${_G} network proxy setting ${C_}]"
+echo -e "*** Generating network proxy env"
 
 if [ -f $EMULATOR_ENV ]; then
     rm -f $EMULATOR_ENV
@@ -33,9 +33,12 @@ do
         __PROXY=`sed "s/^.*${PROXY}=\([^, ]*\).*$/\1/g" $CMDLINE`
         if [ "x${__PROXY}" = "x" ] || ! grep -q ${PROXY} $CMDLINE ; then
             echo "export ${PROXY}=" >> $EMULATOR_ENV
+            echo -e "- ${PROXY}="
         else
             echo "export ${PROXY}=${URL}://${__PROXY}/" >> $EMULATOR_ENV
+            echo -e "- ${PROXY}=${URL}://${__PROXY}/"
         fi
     fi
 done
 echo "export no_proxy=localhost,127.0.0.1/8,10.0.0.0/1" >> $EMULATOR_ENV
+echo -e "- no_proxy=localhost,127.0.0.1/8,10.0.0.0/1"

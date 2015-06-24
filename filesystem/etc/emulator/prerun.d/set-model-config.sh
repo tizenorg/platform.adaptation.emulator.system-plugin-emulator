@@ -8,12 +8,10 @@ fi
 CMDLINE=/proc/cmdline
 XML=$(readlink -f $NEW_ROOT/etc/config/model-config.xml)
 
-echo -e "[${_G} model config setting ${C_}]"
+echo -e "*** Setting model-config.xml"
 
 # display resolution
 if grep -q "video=" $CMDLINE ; then
-        echo -e "[${_G} modify the resolution value of platform features: ${C_}]"
-
         VIDEO=`sed s/.*video=// $CMDLINE | cut -d ' ' -f1`
         FORMAT=`echo $VIDEO | cut -d ':' -f2 | cut -d ',' -f2`
         RESOLUTION=`echo $FORMAT | cut -d '-' -f1`
@@ -28,7 +26,7 @@ if grep -q "video=" $CMDLINE ; then
             sed -i s/"$WIDTH_KEY".*\</"$WIDTH_KEY"\>"$WIDTH"\</ $XML
             HEIGHT_KEY="tizen.org\/feature\/screen.height\" type=\"int\""
             sed -i s/"$HEIGHT_KEY".*\</"$HEIGHT_KEY"\>"$HEIGHT"\</ $XML
-            echo -e "[${_G} width=$WIDTH, height=$HEIGHT ${C_}]"
+            echo -e "- width=$WIDTH, height=$HEIGHT"
 
             # screen size
             SCREENSIZE_KEY="tizen.org\/feature\/screen.size"
@@ -43,8 +41,6 @@ fi
 
 # dot per inch
 if grep -q "dpi=" $CMDLINE ; then
-        echo -e "[${_G} modify the dpi value of platform features: ${C_}]"
-
         DPI=`sed s/.*dpi=// $CMDLINE | cut -d ' ' -f1`
 
         TR_NUM=`echo $DPI | tr -d '[0-9]'`
@@ -55,7 +51,7 @@ if grep -q "dpi=" $CMDLINE ; then
 
             DPI_KEY="tizen.org\/feature\/screen.dpi\" type=\"int\""
             sed -i s/"$DPI_KEY".*\</"$DPI_KEY"\>"$SCREEN_DPI"\</ $XML
-            echo -e "[${_G} dpi=$SCREEN_DPI ${C_}]"
+            echo -e "- dpi=$SCREEN_DPI"
         fi
 fi
 
