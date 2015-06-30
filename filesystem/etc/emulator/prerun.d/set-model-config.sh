@@ -6,7 +6,7 @@ fi
 
 
 CMDLINE=/proc/cmdline
-XML=$(readlink -f $NEW_ROOT/etc/config/model-config.xml)
+XML=$NEW_ROOT/etc/config/model-config.xml
 
 echo -e "*** Setting model-config.xml"
 

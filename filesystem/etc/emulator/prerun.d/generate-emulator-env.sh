@@ -5,7 +5,7 @@ else
 fi
 
 CMDLINE=/proc/cmdline
-EMULATOR_ENV=$(readlink -f $NEW_ROOT/etc/profile.d/emulator_env.sh)
+EMULATOR_ENV=$NEW_ROOT/etc/profile.d/emulator_env.sh
 
 ##### network proxy environments
 echo -e "*** Generating network proxy env"
