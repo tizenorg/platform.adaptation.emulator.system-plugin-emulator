@@ -30,15 +30,16 @@ do
     eval PROXY="\$PROXIES$index"
     eval URL="\$URLS$index"
     if [ ! -z ${PROXY} ] ; then
-        __PROXY=`sed "s/^.*${PROXY}=\([^, ]*\).*$/\1/g" $CMDLINE`
-        if [ "x${__PROXY}" = "x" ] || ! grep -q ${PROXY} $CMDLINE ; then
-            echo "export ${PROXY}=" >> $EMULATOR_ENV
-            echo -e "- ${PROXY}="
-        else
-            echo "export ${PROXY}=${URL}://${__PROXY}/" >> $EMULATOR_ENV
-            echo -e "- ${PROXY}=${URL}://${__PROXY}/"
+        EXPORT_CONTENT="${PROXY}="
+        if grep -q ${PROXY} $CMDLINE ; then
+            __PROXY=`sed "s/^.*${PROXY}=\([^, ]*\).*$/\1/g" $CMDLINE`
+            if [ "x${__PROXY}" != "x" ] ; then
+                EXPORT_CONTENT="${EXPORT_CONTENT}${URL}://${__PROXY}/" >> $EMULATOR_ENV
+            fi
         fi
+        echo "export ${EXPORT_CONTENT}" >> $EMULATOR_ENV
+        echo -e "- ${EXPORT_CONTENT}"
     fi
 done
-echo "export no_proxy=localhost,127.0.0.1/8,10.0.0.0/1" >> $EMULATOR_ENV
-echo -e "- no_proxy=localhost,127.0.0.1/8,10.0.0.0/1"
+echo "export no_proxy=localhost,127.0.0.1/8,10.0.2.0/24" >> $EMULATOR_ENV
+echo -e "- no_proxy=localhost,127.0.0.1/8,10.0.2.0/24"
