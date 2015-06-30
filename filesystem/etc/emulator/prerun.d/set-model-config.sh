@@ -10,6 +10,11 @@ XML=$NEW_ROOT/etc/config/model-config.xml
 
 echo -e "*** Setting model-config.xml"
 
+if [ ! -f $XML ] ; then
+    echo -e "- model-config.xml does not exist"
+    exit
+fi
+
 # display resolution
 if grep -q "video=" $CMDLINE ; then
         VIDEO=`sed s/.*video=// $CMDLINE | cut -d ' ' -f1`
@@ -20,7 +25,7 @@ if grep -q "video=" $CMDLINE ; then
 
         TR_NUM=`echo $WIDTH$HEIGHT | tr -d '[0-9]'`
         if [ "$TR_NUM" != "" ] ; then
-            echo "non-integer argument"
+            echo -e "- resolution value is non-integer argument"
         else
             WIDTH_KEY="tizen.org\/feature\/screen.width\" type=\"int\""
             sed -i s/"$WIDTH_KEY".*\</"$WIDTH_KEY"\>"$WIDTH"\</ $XML
@@ -45,7 +50,7 @@ if grep -q "dpi=" $CMDLINE ; then
 
         TR_NUM=`echo $DPI | tr -d '[0-9]'`
         if [ "$TR_NUM" != "" ] ; then
-            echo "non-integer argument"
+            echo -e "- dpi value is non-integer argument"
         else
             SCREEN_DPI=`expr "$DPI" "/" 10`
 
