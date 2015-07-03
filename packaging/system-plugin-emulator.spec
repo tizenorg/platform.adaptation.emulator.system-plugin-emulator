@@ -14,7 +14,7 @@ Requires(post): setup
 Requires(post): coreutils
 Source0: %{name}-%{version}.tar.gz
 Source1001: packaging/%{name}.manifest
-ExclusiveArch: %{ix86}
+ExclusiveArch: %{ix86} x86_64
 
 %description
 System plugin files for emulator
