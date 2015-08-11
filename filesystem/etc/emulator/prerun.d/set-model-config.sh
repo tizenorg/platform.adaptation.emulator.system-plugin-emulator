@@ -52,7 +52,12 @@ if grep -q "dpi=" $CMDLINE ; then
         if [ "$TR_NUM" != "" ] ; then
             echo -e "- dpi value is non-integer argument"
         else
-            SCREEN_DPI=`expr "$DPI" "/" 10`
+            #temp
+            if [ "$DPI" -gt "999" ] ; then
+                SCREEN_DPI=`expr "$DPI" "/" 10`
+            else
+                SCREEN_DPI="$DPI"
+            fi
 
             DPI_KEY="tizen.org\/feature\/screen.dpi\" type=\"int\""
             sed -i s/"$DPI_KEY".*\</"$DPI_KEY"\>"$SCREEN_DPI"\</ $XML
