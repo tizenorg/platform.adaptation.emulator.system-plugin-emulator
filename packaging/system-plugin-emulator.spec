@@ -1,5 +1,5 @@
 Name: system-plugin-emulator
-Version: 0.1.7
+Version: 0.1.11
 Release: 1
 Summary: System plugin for emulator
 License: Apache-2.0
@@ -47,6 +47,7 @@ cp LICENSE %{buildroot}/usr/share/license/%{name}
 /etc/emulator/prerun
 /etc/emulator/prerun.d/set-model-config.sh
 /etc/emulator/prerun.d/generate-emulator-env.sh
+/etc/emulator/prerun.d/opengl-es-setup-yagl-env.sh
 /etc/inittab
 /etc/preconf.d/emulator_ns.preinit
 /etc/preconf.d/systemd_conf.preinit
