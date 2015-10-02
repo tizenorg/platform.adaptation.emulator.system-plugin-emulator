@@ -65,6 +65,6 @@ cp LICENSE %{buildroot}/usr/share/license/%{name}
 %{_unitdir}/emulator_preinit.target.wants/emul-common-preinit.service
 %{_unitdir}/emulator_preinit.target.wants/dev-vdb.swap
 %{_unitdir}/tizen-generate-env.service
-%{_libdir}/udev/rules.d/51-tizen-udev-default.rules
-%{_libdir}/udev/rules.d/95-tizen-emulator.rules
+%{_prefix}/lib/udev/rules.d/51-tizen-udev-default.rules
+%{_prefix}/lib/udev/rules.d/95-tizen-emulator.rules
 /usr/share/license/%{name}
