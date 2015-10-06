@@ -13,6 +13,7 @@ Type=oneshot
 ExecStartPre=/bin/sh -c '. /etc/emulator/prerun'
 # W/A for alarm-service
 ExecStart=/bin/touch /dev/rtc1
+ExecStartPost=/usr/bin/chsmack -a "_" /etc/config/model-config.xml
 
 [Install]
 WantedBy=emulator_preinit.target
