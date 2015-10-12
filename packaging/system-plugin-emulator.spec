@@ -68,3 +68,4 @@ cp LICENSE %{buildroot}/usr/share/license/%{name}
 %{_prefix}/lib/udev/rules.d/51-tizen-udev-default.rules
 %{_prefix}/lib/udev/rules.d/95-tizen-emulator.rules
 /usr/share/license/%{name}
+%{_sysconfdir}/fstab
