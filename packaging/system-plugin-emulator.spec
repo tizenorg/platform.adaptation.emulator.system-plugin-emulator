@@ -7,6 +7,7 @@ Group: System/Configuration
 Requires: udev
 Requires: util-linux
 Requires: sysvinit
+Requires: alsa-utils
 Requires(post): setup
 Requires(post): coreutils
 Source0: %{name}-%{version}.tar.gz
