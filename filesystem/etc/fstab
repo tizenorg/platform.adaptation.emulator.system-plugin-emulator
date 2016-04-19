@@ -1,3 +1,2 @@
 # <file system> <mount point>   <type>  <options>        <dump> <pass>
-/dev/vda2  /opt         ext4    defaults         0      2
-/dev/vda3  /opt/usr     ext4    defaults         0      2
+# All filesystem have been automatically mounted in ramfs before init.
