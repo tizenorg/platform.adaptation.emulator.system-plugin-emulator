@@ -1,9 +1,9 @@
 KERNEL=="yagl", GROUP="video", MODE="0660", SECLABEL{smack}="*"
 SUBSYSTEM=="drm", GROUP="video", MODE="0660", SECLABEL{smack}="*"
 KERNEL=="brillcodec", GROUP="hwcodec", MODE="0666", SECLABEL{smack}="*"
-KERNEL=="video0", GROUP="camera", MODE="0660", SECLABEL{smack}="device::camera"
-KERNEL=="video1", GROUP="video", MODE="0660", SECLABEL{smack}="device::video"
-KERNEL=="video2", GROUP="video", MODE="0660", SECLABEL{smack}="device::video"
+KERNEL=="video0", GROUP="camera", MODE="0660", SECLABEL{smack}="*"
+KERNEL=="video1", GROUP="video", MODE="0660", SECLABEL{smack}="*"
+KERNEL=="video2", GROUP="video", MODE="0660", SECLABEL{smack}="*"
 KERNEL=="vdpram*", GROUP="system", MODE="0660", SECLABEL{smack}="*"
 
 SUBSYSTEM=="input", ATTR{name}=="ImExPS/2 Generic Explorer Mouse", ENV{ID_SEAT}="seat1"
